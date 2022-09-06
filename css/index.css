@@ -15,6 +15,10 @@ body{
 }
 .vglasses__left .col-4{
     align-self: center;
+
+}
+.vglasses__left img{
+    width: 100%;
 }
 .vglasses__items{
     cursor: pointer;

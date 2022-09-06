@@ -10,3 +10,59 @@ let dataGlasses = [
     { id: "G9", src: "./img/g9.jpg", virtualImg: "./img/v9.png", brand: "Coarch", name: "MIDNIGHT VIXEN REMIX", color: "Blue, Black", price: 120, description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit consequatur soluta ad aut laborum amet." }
 ];
 
+
+const renderVglasses = (arrayGlasses) => {
+    let htmlString = '';
+    for (const value of arrayGlasses) {
+        htmlString += `
+        <div class="col-4 vglasses__items">
+                <img src="${value.src}" alt="">
+        </div>
+        `
+    }
+    document.querySelector('#vglassesList').innerHTML = htmlString;
+}
+
+renderVglasses(dataGlasses)
+
+const renderVglassesOnAvatar = (arrayGlasses,srcClick) => {
+    let html = '';
+    for(const value of arrayGlasses) {
+        if(value.src === srcClick) {
+            html = `
+            <div class="test_glasses">
+                                    <img src="${value.virtualImg}" alt="">
+                                </div>
+            `
+        }
+    }
+    document.querySelector('#avatar').innerHTML = html
+}
+
+const renderContent = (arrayGlasses, idCLick) => {
+    let html = '';
+    for(const value of arrayGlasses) {
+        if(value.id === idCLick) {
+            html = `
+            <h1>${value.name} - ${value.brand} (${value.color})</h1>
+                            <div class="pay">
+                                <button>$${value.price}</button>
+                                <span>Stocking</span>
+                            </div>
+                            <p>${value.description}</p>
+            `
+        }
+    }
+    document.querySelector('.vglasses__info').innerHTML = html
+}
+
+const mangButton = document.querySelectorAll('.vglasses__items')
+
+for (let i = 0; i < 9; i++ ) {
+    mangButton[i].onclick = () => {
+        renderVglassesOnAvatar(dataGlasses,dataGlasses[i].src)
+        renderContent(dataGlasses, dataGlasses[i].id)
+        document.querySelector('#glassesInfo').style.display = 'block'
+    }
+}
+
